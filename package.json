@@ -1,0 +1,17 @@
+{
+  "name": "coverletterviewer",
+  "version": "1.0.0",
+  "description": "Quite simply a cruddy CRUD app to display all my cover letters.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "crenaz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0"
+  }
+}
