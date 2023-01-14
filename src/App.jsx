@@ -9,7 +9,7 @@ import {Fragment} from 'react';
 function App() {
   const [count, setCount] = useState(1);
 
-  const passageref = useRef(null);
+  const passageRef = useRef(null);
   const questionRef = useRef(null);
   const [answer, setAnswer] = useState();
   const [model, setModel] = useState(null);
@@ -26,7 +26,7 @@ function App() {
   const answerQuestion = async (e) => {
     if(e.which === 13 && model !==null){
       console.log('Question submitted');
-      const passage = passageref.current.value;
+      const passage = passageRef.current.value;
       const question = questionRef.current.value;
 
       const answers = await model.findAnswers(question, passage)
