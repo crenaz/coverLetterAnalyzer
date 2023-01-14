@@ -21,7 +21,19 @@ function App() {
     console.log('Model loaded');
   }
 
-  useEffect(()=>{loadModel}, []) //Time 11:04
+  useEffect(()=>{loadModel}, []); //Time 11:04
+
+  const answerQuestion = async (e) => {
+    if(e.which === 13 && model !==null){
+      console.log('Question submitted');
+      const passage = passageref.current.value;
+      const question = questionRef.current.value;
+
+      const answers = await model.findAnswers(question, passage)
+      setAnswer(answers);
+      console.log(answers);
+    }
+  };
 
   return (
     <div className="App">
