@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import * as tf from '@tensorflow/tfjs';
 import * as qna from '@tensorflow-models/qna';
-import { Audio } from  'react-loader-spinner'
+import Loader from  'react-loader-spinner';
 import {Fragment} from 'react';
 
 function App() {
@@ -56,8 +56,28 @@ function App() {
           count is {count}
         </button>
       </div>
+      {model == null? 
+        <div>
+          <div>Model Loading</div>
+          <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}/>
+        </div>
+        :
+        <Fragment>
+          Passage
+          <textarea ref={passageRef} rows="38" cols="100"></textarea>
+          Ask a Question
+          <input ref={questionRef} onKeyPress={answerQuestion} size="80"></input>
+          Answers
+          {answer ? answer.map((ans,idx)=><div><b>Answer {idx+1} - </b>{ans.text} {ans.score}</div>): ""}
+
+        </Fragment>
+        }
     </div>
-  )
+  );
 }
 
 export default App
