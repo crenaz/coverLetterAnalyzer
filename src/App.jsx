@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import * as tf from '@tensorflow/tfjs';
 import * as qna from '@tensorflow-models/qna';
-import Loader from  'react-loader-spinner';
+import { Puff } from  'react-loader-spinner';
 import {Fragment} from 'react';
 
 function App() {
@@ -59,11 +59,11 @@ function App() {
       {model == null? 
         <div>
           <div>Model Loading</div>
-          <Loader
-          type="Puff"
-          color="#00BFFF"
-          height={100}
-          width={100}/>
+          <Puff
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
         </div>
         :
         <Fragment>
