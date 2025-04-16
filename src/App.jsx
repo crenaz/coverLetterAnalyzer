@@ -5,14 +5,20 @@ import * as tf from '@tensorflow/tfjs';
 import * as qna from '@tensorflow-models/qna';
 import { Puff } from  'react-loader-spinner';
 import {Fragment} from 'react';
+import coverLetters from './assets/coverLetterList.json';
 
 function App() {
   const [count, setCount] = useState(1);
+  const [selectedLetter, setSelectedLetter] = useState('');
 
   const passageRef = useRef(null);
   const questionRef = useRef(null);
   const [answer, setAnswer] = useState();
   const [model, setModel] = useState(null);
+
+  const handleLetterChange = (e) => {
+    setSelectedLetter(coverLetters[e.target.value]);
+  };
 
   // load TF model
   const loadModel = async () => {
@@ -37,20 +43,23 @@ function App() {
 
   return (
     <div className="App">
-      <div>
       <h1 className="read-the-docs">Cover Letter Analyzer</h1>
-      <h2>now with VITE + REACT</h2>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <p>Select a cover letter from the list.</p>
-        <p id="mn"></p>
-        <p id="cvrlttr"></p>
-      </div>
+      
+      <select onChange={handleLetterChange}>
+        <option value="">Choose a letter</option>
+        {Object.keys(coverLetters).map((key) => (
+          <option key={key} value={key}>
+            Letter {key}
+          </option>
+        ))}
+      </select>
 
+      {selectedLetter && (
+        <div className="letter-content">
+          <div dangerouslySetInnerHTML={{ __html: selectedLetter }} />
+        </div>
+      )}
+      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
